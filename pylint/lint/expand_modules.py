@@ -155,4 +155,7 @@ def expand_modules(
                         "basename": modname,
                     }
                 )
+    # huawei in-place change to pylint
+    if result:
+        result.sort(key=lambda x : x.get("path"))
     return result, errors

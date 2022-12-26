@@ -878,7 +878,8 @@ class PyLinter(
 
             if tok_type != tokenize.COMMENT:
                 continue
-            match = OPTION_PO.search(content)
+            # huawei in-place change to pylint
+            match = None if len(content) >= 1000 else OPTION_PO.search(content)
             if match is None:
                 continue
             try:
@@ -1410,6 +1411,7 @@ class PyLinter(
         # get a global note for the code
         evaluation = self.config.evaluation
         try:
+            # huawei in-place change to pylint
             stats_dict = {
                 "fatal": self.stats.fatal,
                 "error": self.stats.error,
@@ -1418,6 +1420,7 @@ class PyLinter(
                 "convention": self.stats.convention,
                 "statement": self.stats.statement,
                 "info": self.stats.info,
+                "huawei": self.stats.huawei,
             }
             note = eval(evaluation, {}, stats_dict)  # pylint: disable=eval-used
         except Exception as ex:  # pylint: disable=broad-except

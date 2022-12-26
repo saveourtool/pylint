@@ -741,7 +741,8 @@ class FormatChecker(BaseTokenChecker):
             return
 
         # Line length check may be deactivated through `pylint: disable` comment
-        mobj = OPTION_PO.search(lines)
+        # huawei in-place change to pylint
+        mobj = None if len(lines) >= 1000 else OPTION_PO.search(lines)
         checker_off = False
         if mobj:
             if not self.is_line_length_check_activated(mobj):

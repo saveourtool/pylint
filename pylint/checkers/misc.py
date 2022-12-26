@@ -142,7 +142,8 @@ class EncodingChecker(BaseChecker):
             comment_text = comment.string[1:].lstrip()  # trim '#' and whitespaces
 
             # handle pylint disable clauses
-            disable_option_match = OPTION_PO.search(comment_text)
+            # huawei in-place change to pylint
+            disable_option_match = None if len(comment_text) >= 1000 else OPTION_PO.search(comment_text)
             if disable_option_match:
                 try:
                     values = []

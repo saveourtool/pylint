@@ -32,6 +32,9 @@ from astroid.context import InferenceContext
 
 from pylint.constants import TYPING_TYPE_CHECKS_GUARDS
 
+import sys # huawei in-place change to pylint
+sys.setrecursionlimit(1000000)
+
 COMP_NODE_TYPES = (
     nodes.ListComp,
     nodes.SetComp,

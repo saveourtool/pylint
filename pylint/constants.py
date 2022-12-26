@@ -35,10 +35,13 @@ MSG_TYPES: Dict[str, MessageTypesFullName] = {
     "W": "warning",
     "E": "error",
     "F": "fatal",
+    # huawei in-place change to pylint
+    "H": "huawei",
 }
 MSG_TYPES_LONG: Dict[str, str] = {v: k for k, v in MSG_TYPES.items()}
 
-MSG_TYPES_STATUS = {"I": 0, "C": 16, "R": 8, "W": 4, "E": 2, "F": 1}
+# huawei in-place change to pylint
+MSG_TYPES_STATUS = {"I": 0, "H": 32, "C": 16, "R": 8, "W": 4, "E": 2, "F": 1}
 
 # You probably don't want to change the MAIN_CHECKER_NAME
 # This would affect rcfile generation and retro-compatibility

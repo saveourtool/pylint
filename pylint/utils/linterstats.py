@@ -75,6 +75,8 @@ class ModuleStats(TypedDict):
     refactor: int
     statement: int
     warning: int
+    # huawei in-place change to pylint
+    huawei: int
 
 
 # pylint: disable-next=too-many-instance-attributes
@@ -130,6 +132,8 @@ class LinterStats:
         self.refactor = 0
         self.statement = 0
         self.warning = 0
+        # huawei in-place change to pylint
+        self.huawei = 0
 
         self.global_note = 0
         self.nb_duplicated_lines = 0
@@ -150,6 +154,8 @@ class LinterStats:
         {self.refactor}
         {self.statement}
         {self.warning}
+        # huawei in-place change to pylint
+        {self.huawei}
         {self.global_note}
         {self.nb_duplicated_lines}
         {self.percent_duplicated_lines}"""
@@ -157,7 +163,8 @@ class LinterStats:
     def init_single_module(self, module_name: str) -> None:
         """Use through PyLinter.set_current_module so PyLinter.current_name is consistent."""
         self.by_module[module_name] = ModuleStats(
-            convention=0, error=0, fatal=0, info=0, refactor=0, statement=0, warning=0
+            # huawei in-place change to pylint
+            convention=0, error=0, fatal=0, info=0, refactor=0, statement=0, warning=0, huawei=0
         )
 
     def get_bad_names(
@@ -307,6 +314,8 @@ class LinterStats:
         self.info = 0
         self.refactor = 0
         self.warning = 0
+        # huawei in-place change to pylint
+        self.huawei = 0
 
 
 def merge_stats(stats: List[LinterStats]):
@@ -371,6 +380,8 @@ def merge_stats(stats: List[LinterStats]):
         merged.refactor += stat.refactor
         merged.statement += stat.statement
         merged.warning += stat.warning
+        # huawei in-place change to pylint
+        merged.huawei += stat.huawei
 
         merged.global_note += stat.global_note
     return merged
